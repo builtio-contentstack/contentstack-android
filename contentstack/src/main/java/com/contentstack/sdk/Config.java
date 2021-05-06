@@ -1,7 +1,6 @@
 package com.contentstack.sdk;
 
 import android.text.TextUtils;
-import com.contentstack.sdk.utilities.CSAppConstants;
 
 /**
  * Set Configuration for stack instance creation.
@@ -16,6 +15,27 @@ public class Config {
     protected String VERSION        = "v3";
     protected String environment    = null;
     protected ContentstackRegion region = ContentstackRegion.US;
+    protected String branch;
+
+
+
+    /**
+     * Gets branch.
+     *
+     * @return the branch
+     */
+    public String getBranch() {
+        return this.branch;
+    }
+
+    /**
+     * Sets branch.
+     *
+     * @param branch the branch
+     */
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
 
     public enum ContentstackRegion { US, EU }
 
