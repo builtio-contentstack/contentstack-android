@@ -6,17 +6,15 @@ import android.text.TextUtils;
  * Set Configuration for stack instance creation.
  *
  * @author contentstack.com, Inc
- *
  */
 public class Config {
 
-    protected String URLSCHEMA      = "https://";
-    protected String URL            = "cdn.contentstack.io";
-    protected String VERSION        = "v3";
-    protected String environment    = null;
+    protected String URL_SCHEMA = "https://";
+    protected String URL = "cdn.contentstack.io";
+    protected String VERSION = "v3";
+    protected String environment = null;
     protected ContentstackRegion region = ContentstackRegion.US;
     protected String branch;
-
 
 
     /**
@@ -37,25 +35,38 @@ public class Config {
         this.branch = branch;
     }
 
-    public enum ContentstackRegion { US, EU }
+    /**
+     * The enum Contentstack region.
+     */
+    public enum ContentstackRegion {
+        /**
+         * Us contentstack region.
+         */
+        US,
+        /**
+         * Eu contentstack region.
+         */
+        EU
+    }
 
 
-    public ContentstackRegion getRegion() { return this.region; }
+    /**
+     * Gets region.
+     *
+     * @return the region
+     */
+    public ContentstackRegion getRegion() {
+        return this.region;
+    }
 
     /**
      * Sets region allow you to set your region for the Contentstack server.
      *
-     * @param region
-     *
-     * <p>
-     * <b>Note:</b> Default region sets to us </a>
-     *
-     * <br><br><b>Example :</b><br>
-     * <pre class="prettyprint">
-     * config.setRegion(ContentstackRegion.US);
-     * </pre>
+     * @param region <p> <b>Note:</b>
+     *               Default region sets to us </a> <br><br>
+     *               <b>Example :</b><br> <pre class="prettyprint"> config.setRegion(ContentstackRegion.US); </pre>
+     * @return the region
      */
-
     public ContentstackRegion setRegion(ContentstackRegion region) {
         this.region = region;
         return this.region;
@@ -69,26 +80,16 @@ public class Config {
      * Config config = new Config();
      * </pre>
      */
-
-    public Config(){}
+    public Config() {
+    }
 
     /**
      * Sets host name of the Contentstack server.
      *
-     * @param hostName
-     * host name.
-     *
-     * <p>
-     * <b>Note:</b> Default hostname sets to <a href ="https://cdn.contentstack.io"> cdn.contentstack.io </a>
-     *  and default protocol is HTTPS.
-     * <br><br><b>Example :</b><br>
-     * <pre class="prettyprint">
-     * config.setHost("cdn.contentstack.io");
-     * </pre>
+     * @param hostName host name. <p> <b>Note:</b> Default hostname sets to <a href ="https://cdn.contentstack.io"> cdn.contentstack.io </a>  and default protocol is HTTPS. <br><br><b>Example :</b><br> <pre class="prettyprint"> config.setHost("cdn.contentstack.io"); </pre>
      */
-
-    public void setHost(String hostName){
-        if(!TextUtils.isEmpty(hostName)) {
+    public void setHost(String hostName) {
+        if (!TextUtils.isEmpty(hostName)) {
             URL = hostName;
         }
     }
@@ -102,8 +103,10 @@ public class Config {
      * <pre class="prettyprint">
      * String url = config.getHost();
      * </pre>
+     *
+     * @return the string
      */
-    public String getHost(){
+    public String getHost() {
         return URL;
     }
 
@@ -115,24 +118,25 @@ public class Config {
      * <pre class="prettyprint">
      * String version = config.getVersion();
      * </pre>
+     *
+     * @return the string
      */
-    public String getVersion(){
-        return  VERSION;
+    public String getVersion() {
+        return VERSION;
     }
 
     /**
      * Changes the Contentstack version to be used in the final URL.
      *
-     * @param version
-     *                  version string.
+     * @param version version string.
      *
-     * <br><br><b>Example :</b><br>
-     * <pre class="prettyprint">
-     *      config.setVersion("v3");
-     * </pre>
+     *                <br><br><b>Example :</b><br>
+     *                <pre class="prettyprint">
+     *                                config.setVersion("v3");
+     *                                </pre>
      */
-    private void setVersion(String version){
-        if(!TextUtils.isEmpty(version)){
+    private void setVersion(String version) {
+        if (!TextUtils.isEmpty(version)) {
             VERSION = version;
         }
     }
@@ -140,27 +144,24 @@ public class Config {
     /**
      * set environment.
      *
-     * @param environment environment uid/name
-     *
-     *  <br><br><b>Example :</b><br>
-     *  <pre class="prettyprint">
-     *  config.setEnvironment("stag", false);
-     * </pre>
+     * @param environment environment uid/name  <br><br><b>Example :</b><br>  <pre class="prettyprint">  config.setEnvironment("stag", false); </pre>
      */
-    protected void setEnvironment(String environment){
-        if(!TextUtils.isEmpty(environment)){
+    protected void setEnvironment(String environment) {
+        if (!TextUtils.isEmpty(environment)) {
             this.environment = environment;
         }
     }
 
     /**
      * Get environment.
-     *  <br><br><b>Example :</b><br>
-     *  <pre class="prettyprint">
+     * <br><br><b>Example :</b><br>
+     * <pre class="prettyprint">
      *  String environment = config.getEnvironment();
      * </pre>
+     *
+     * @return the string
      */
-    public String getEnvironment(){
+    public String getEnvironment() {
         return environment;
     }
 

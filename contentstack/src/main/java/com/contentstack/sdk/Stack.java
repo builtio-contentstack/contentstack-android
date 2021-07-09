@@ -76,7 +76,7 @@ public class Stack implements INotifyClass {
 
     protected void setConfig(Config config){
         this.config        = config;
-        URLSCHEMA          = config.URLSCHEMA;
+        URLSCHEMA          = config.URL_SCHEMA;
         URL                = config.URL;
         VERSION            = config.VERSION;
 

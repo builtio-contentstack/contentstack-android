@@ -63,7 +63,7 @@ android {
     buildTypes {
         def localProperties = new Properties()
         localProperties.load(new FileInputStream(rootProject.file("local.properties")))
-        debug{
+        debug {
             debuggable true
             testCoverageEnabled true
             buildConfigField "String", "host", localProperties['host']
@@ -72,6 +72,13 @@ android {
             buildConfigField "String", "environment", localProperties['env']
             buildConfigField "String", "contentTypeUID", localProperties['contentType']
             buildConfigField "String", "assetUID", localProperties['assetUid']
+
+            // for the dev9 content-branching tests
+            buildConfigField "String", "BRANCH_API_KEY", localProperties['BRANCH_API_KEY']
+            buildConfigField "String", "BRANCH_DELIVERY_TOKEN", localProperties['BRANCH_DELIVERY_TOKEN']
+            buildConfigField "String", "BRANCH_ENVIRONMENT", localProperties['BRANCH_ENVIRONMENT']
+            buildConfigField "String", "BRANCH_HOST", localProperties['BRANCH_HOST']
+
         }
         release {
             minifyEnabled false
@@ -118,8 +125,8 @@ task unzip(type: Copy) {
 }
 
 task createJar(type: Jar) {
-    archiveName='Contentstack.jar'
-    from ('build/Contentstack-jar/')
+    archiveName = 'Contentstack.jar'
+    from('build/Contentstack-jar/')
     include 'com/contentstack/'
     include 'META-INF/'
 }
@@ -178,9 +185,11 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)            }
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
             snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)            }
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
             pom.project {
                 name 'contentstack-android-sdk'
                 packaging 'aar'
@@ -204,8 +213,8 @@ uploadArchives {
 
                 developers {
                     developer {
-                        id    'mshaileshr@gmail.com'
-                        name  'Shailesh Mishra'
+                        id 'mshaileshr@gmail.com'
+                        name 'Shailesh Mishra'
                         email 'mobile@contentstack.com'
                     }
                 }
